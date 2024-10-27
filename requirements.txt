@@ -1,0 +1,13 @@
+pytest
+pydifact
+pyschematron
+reportlab
+pikepdf
+loguru
+lxml
+sentry-sdk
+drafthorse
+pydantic
+fastapi 
+multipart
+uvicorn[standard]
