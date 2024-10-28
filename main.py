@@ -8,6 +8,17 @@ from mapper import EDIMapper
 
 app = FastAPI()
 
+# Configuração do CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:8080",  # Domínio do frontend em desenvolvimento
+        "https://seu-dominio-frontend.com"  # Domínio do frontend em produção, se houver
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos HTTP (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos os cabeçalhos
+)
 
 @app.post("/generate_xml", response_class=Response)
 async def generate_xml(file: UploadFile = File(...)):
