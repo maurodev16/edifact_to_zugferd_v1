@@ -9,5 +9,5 @@ sentry-sdk
 drafthorse
 pydantic
 fastapi 
-multipart
+python-multipart
 uvicorn[standard]
