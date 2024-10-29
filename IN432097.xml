@@ -62,17 +62,17 @@
       </ram:BuyerTradeParty>
       <ram:SellerOrderReferencedDocument>
         <ram:FormattedIssueDateTime>
-          <qdt:DateTimeString format="102">20241029</qdt:DateTimeString>
+          <qdt:DateTimeString format="102">20241028</qdt:DateTimeString>
         </ram:FormattedIssueDateTime>
       </ram:SellerOrderReferencedDocument>
       <ram:BuyerOrderReferencedDocument>
         <ram:FormattedIssueDateTime>
-          <qdt:DateTimeString format="102">20241029</qdt:DateTimeString>
+          <qdt:DateTimeString format="102">20241028</qdt:DateTimeString>
         </ram:FormattedIssueDateTime>
       </ram:BuyerOrderReferencedDocument>
       <ram:UltimateCustomerOrderReferencedDocument>
         <ram:FormattedIssueDateTime>
-          <qdt:DateTimeString format="102">20241029</qdt:DateTimeString>
+          <qdt:DateTimeString format="102">20241028</qdt:DateTimeString>
         </ram:FormattedIssueDateTime>
       </ram:UltimateCustomerOrderReferencedDocument>
     </ram:ApplicableHeaderTradeAgreement>
