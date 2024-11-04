@@ -1,5 +1,5 @@
 pytest
-pydifact
+pydifact==0.1.8
 pyschematron
 reportlab
 pikepdf
