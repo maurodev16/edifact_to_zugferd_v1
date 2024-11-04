@@ -1,17 +1,38 @@
 import os
-from fastapi import FastAPI, File, UploadFile
+from typing import Any, Dict
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import Response, FileResponse
-from pydantic_core import ValidationError
 from edifact_file_parser import EDIFACTParser
 from invoice_model import InvoiceModel
 from invoice_xml_generator import InvoiceXMLGenerator
 from invoice_pdf_generator import InvoicePDFGenerator
 from mapper import EDIMapper
-from drafthorse.models.document import Document
-from drafthorse.models.tradelines import LineItem
 
 app = FastAPI()
 
+@app.post("/parse-edifact", response_model=dict)
+async def parse_edifact(file: UploadFile = File(...)) -> Dict[str, Any]:
+    edifact_path = os.path.join("output", file.filename)
+    
+    try:
+        # Salva o arquivo EDIFACT temporariamente
+        with open(edifact_path, "wb") as f:
+            f.write(await file.read())
+
+        # Usa o parser para extrair os dados
+        parsed_data = EDIFACTParser.parse_file(edifact_path)
+        print(f"Parsed EDIFACT data: {parsed_data}")
+        
+        return parsed_data
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao parsear arquivo EDIFACT: {e}")
+
+    finally:
+        # Remove o arquivo temporário
+        if os.path.exists(edifact_path):
+            os.remove(edifact_path)
+            
 @app.post("/convert_from_edifact_invoice_file_to_x-invoice_xml", response_class=Response)
 async def generate_xml(file: UploadFile = File(...)):
     xml_path = os.path.join("output", file.filename)
@@ -20,6 +41,7 @@ async def generate_xml(file: UploadFile = File(...)):
 
     # Parse do arquivo EDIFACT e mapeamento para o modelo de fatura
     parsed_data = EDIFACTParser.parse_file(xml_path)
+    print(f"Parsed file: {parsed_data}")
     mapper = EDIMapper()
     invoice_model = mapper.map_to_invoice(parsed_data)
 
@@ -32,7 +54,6 @@ async def generate_xml(file: UploadFile = File(...)):
     
     # Retorna o XML gerado como resposta
     return Response(content=xml_output.decode('utf-8'), media_type="application/xml")
-
 
 
 @app.post("/generate_zugferd_pdf_from_x-invoice-xml", response_class=FileResponse)
@@ -56,6 +77,8 @@ async def generate_zugferd_pdf(file: UploadFile = File(...)):
         
     # Retorna o PDF gerado como resposta
     return response
+
+
 
 if __name__ == "__main__":
     import uvicorn

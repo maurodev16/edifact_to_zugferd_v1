@@ -1,5 +1,5 @@
 from datetime import datetime
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A3
 from reportlab.pdfgen import canvas
 from invoice_model import InvoiceModel
 from drafthorse.models.document import Document
@@ -32,11 +32,11 @@ class InvoicePDFGenerator:
     
     def generate_pdf(self, pdf_path):
         """Cria o arquivo PDF básico com as informações da fatura."""
-        pdf_canvas = canvas.Canvas(pdf_path, pagesize=A4)
+        pdf_canvas = canvas.Canvas(pdf_path, pagesize=A3)
         pdf_canvas.drawString(100, 760, f"Invoice Number: {self.invoice.invoice_number}")
         pdf_canvas.drawString(100, 755, f"Invoice Date: {self.format_date(self.invoice.issue_date_time)}")
         pdf_canvas.drawString(100, 745, f"Type Code: {self.invoice.type_code}")
-        pdf_canvas.drawString(100, 735, f"Currency Code: {self.invoice.currency_code}")
+        pdf_canvas.drawString(100, 775, f"Currency Code: {self.invoice.currency_code}")
         pdf_canvas.drawString(100, 725, f"Line ID: {self.invoice.line_id}")
         pdf_canvas.save()
     
