@@ -6,7 +6,6 @@ from drafthorse.models.accounting import ApplicableTradeTax
 from drafthorse.models.document import Document
 from drafthorse.models.note import IncludedNote
 from drafthorse.models.tradelines import LineItem
-from drafthorse.pdf import attach_xml, PdfWriter
 from invoice_model import InvoiceModel
 
 class InvoiceXMLGenerator:
@@ -78,7 +77,7 @@ class InvoiceXMLGenerator:
         doc.trade.settlement.monetary_summation.grand_total = Decimal("999.00")
         doc.trade.settlement.monetary_summation.due_amount = Decimal("999.00")
 
-        # Gera e valida o XML
+        # Generate and Validate XML X-Rechnung
         xml = doc.serialize(schema="FACTUR-X_EXTENDED")
         validate_xml(xml, schema="FACTUR-X_EXTENDED")
 
@@ -87,10 +86,10 @@ class InvoiceXMLGenerator:
     def save_xml(self, xml: bytes, invoice_number: str):
         output_dir = "output"
         os.makedirs(output_dir, exist_ok=True)
-        output_file_path = os.path.join(output_dir, f"{invoice_number}.xml")
+        output_file_path = os.path.join(output_dir, f"X-Rechnung-{invoice_number}.xml")
 
         with open(output_file_path, "wb") as file:
             file.write(xml)
 
-        print(f"XML salvo em: {output_file_path}")
+        print(f"XML Savad in: {output_file_path}")
         return output_file_path

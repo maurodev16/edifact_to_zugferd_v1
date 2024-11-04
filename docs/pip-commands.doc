@@ -1,0 +1,34 @@
+Listar todos os pacotes instalados globalmente:
+*pip list
+
+Gerar um arquivo de requisitos com todos os pacotes instalados:
+*pip freeze > global_packages.txt
+
+Desinstalar todos os pacotes listados no arquivo:
+*pip uninstall -r global_packages.txt -y
+
+Verificar se todos os pacotes foram desinstalados:
+*pip list
+
+Agora, para garantir que você use apenas os pacotes do seu ambiente virtual, siga estes passos:
+
+Criar um novo ambiente virtual (se ainda não tiver um):
+*python -m venv myenv
+
+Ativar o ambiente virtual:
+No Windows:
+*myenv\Scripts\activate
+
+No macOS/Linux:
+*source myenv/bin/activate
+
+Instalar os pacotes necessários dentro do ambiente virtual:
+*pip install <nome_do_pacote>
+
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+To update, run: python.exe -m pip install --upgrade pip
+
+uvicorn main:app --reload

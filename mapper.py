@@ -13,7 +13,7 @@ class EDIMapper:
         # Mapeamento do cabeçalho para obter "INVOIC" do campo UNB
         unh_segment = parsed_data.get("UNH", [None, []])
         message_id = unh_segment[0]  # 'ME000001'
-        message_type = unh_segment[1][0]  # 'INVOIC'
+        message_type = str(unh_segment[1][0])  # 'INVOIC'
         print("Header name :", message_type)
         
         # DTM
@@ -57,8 +57,6 @@ class EDIMapper:
         line_id = parsed_data.get("LIN", [['', '', []]])[0][0]
         payment_code = parsed_data.get("PAI", [['', '', '']])[0][2]
         print("Payment Code:", payment_code)
-
-
         
         # Criação do objeto da fatura completa
         invoice = InvoiceModel(

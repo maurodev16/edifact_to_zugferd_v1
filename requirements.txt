@@ -7,7 +7,6 @@ loguru
 lxml
 sentry-sdk
 drafthorse
-factur-x
 pydantic
 fastapi 
 python-multipart

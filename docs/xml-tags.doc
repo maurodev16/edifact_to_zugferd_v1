@@ -1,0 +1,33 @@
+As tags rsm e ram são prefixos de namespace que ajudam a organizar e identificar diferentes partes do documento XML.
+
+rsm (Root Standard Message): Este prefixo é usado para elementos que fazem parte da estrutura principal da mensagem. Por exemplo, rsm:CrossIndustryInvoice é um elemento que representa a fatura principal no formato ZUGFeRD1.
+ram (Reusable Aggregate Message): Este prefixo é usado para elementos que são reutilizáveis e agregados dentro da mensagem. Por exemplo, ram:TaxTotalAmount é um elemento que representa o valor total dos impostos2.
+Esses prefixos são obrigatórios e seguem as regras de nomeação e design do UN/CEFACT para garantir a conformidade e a interoperabilidade dos documentos eletrônicos1.
+No XML ZUGFeRD, as tags rsm e ram são usadas para organizar as informações da fatura eletrônica. Pense nelas como categorias ou seções que ajudam a separar diferentes tipos de dados.
+
+rsm (Root Standard Message): Imagine que esta é a “capa” do seu documento. Tudo que está dentro dessa tag faz parte da estrutura principal da fatura. Por exemplo, rsm:CrossIndustryInvoice é como o título do seu documento de fatura.
+ram (Reusable Aggregate Message): Estas são como “subseções” dentro do seu documento. Elas contêm informações específicas que podem ser reutilizadas em diferentes partes do documento. Por exemplo, ram:TaxTotalAmount é uma subseção que mostra o valor total dos impostos.
+Essas tags ajudam a manter o documento organizado e fácil de entender tanto para humanos quanto para sistemas automatizados.
+O ZUGFeRD é um formato híbrido de fatura eletrônica que combina um PDF legível para humanos com um anexo XML legível por máquinas. Aqui estão alguns pontos importantes que você deve saber:
+
+Estrutura Híbrida: Cada fatura ZUGFeRD é composta por um PDF/A-3 que contém a versão visual da fatura e um anexo XML com os dados estruturados1. Isso permite que a fatura seja lida tanto por pessoas quanto por sistemas automatizados.
+Perfis de Conformidade: O ZUGFeRD possui diferentes perfis (Basic, Comfort, Extended) que variam em complexidade e quantidade de informações fornecidas. O perfil a ser usado depende das necessidades específicas da transação e dos requisitos legais2.
+Interoperabilidade: O formato é baseado em normas internacionais como a UN/CEFACT Cross Industry Invoice (CII) e a ISO 19005-3 (PDF/A-3), garantindo que as faturas possam ser trocadas e processadas globalmente1.
+Benefícios: Utilizar o ZUGFeRD pode reduzir custos de processamento, aumentar a precisão dos dados e acelerar o ciclo de pagamento. Além disso, facilita a conformidade com regulamentos fiscais e de arquivamento2.
+Implementação: Para criar e processar faturas ZUGFeRD, é necessário software compatível que possa gerar o PDF/A-3 com o anexo XML e validar a conformidade do documento com os perfis especificados2.
+
+Os perfis Basic, Comfort e Extended no ZUGFeRD definem a quantidade de informações e a complexidade dos dados incluídos na fatura eletrônica. Aqui está uma visão geral de cada um:
+
+Basic:
+Objetivo: Fornecer um conjunto mínimo de dados necessários para uma fatura eletrônica.
+Uso: Ideal para pequenas empresas ou transações simples.
+Conteúdo: Inclui informações essenciais como dados do fornecedor, do cliente, itens da fatura e valores totais1.
+Comfort:
+Objetivo: Oferecer um nível intermediário de detalhes, adequado para a maioria das transações comerciais.
+Uso: Utilizado por empresas que precisam de mais detalhes do que o perfil Basic, mas não necessitam de todas as informações possíveis.
+Conteúdo: Além dos dados do perfil Basic, inclui informações adicionais como detalhes de pagamento, impostos detalhados e referências a documentos relacionados12.
+Extended:
+Objetivo: Fornecer o nível mais alto de detalhes e informações.
+Uso: Adequado para transações complexas e empresas que precisam de um alto grau de detalhamento.
+Conteúdo: Inclui todos os dados dos perfis Basic e Comfort, além de informações adicionais como dados logísticos, detalhes de contratos e especificações técnicas13.
+Esses perfis garantem que as faturas possam ser adaptadas às necessidades específicas de diferentes tipos de negócios e transações, mantendo a conformidade e a interoperabilidade.

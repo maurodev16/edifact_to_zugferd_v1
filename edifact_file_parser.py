@@ -16,6 +16,7 @@ class EDIFACTParser:
                     parsed_data[segment.tag].append(segment.elements)
                 else:
                     parsed_data[segment.tag] = segment.elements
+                    print(parsed_data)
 
         # Imprime o dicionário completo apenas uma vez após o loop
         return parsed_data
