@@ -1,3 +1,4 @@
+import json
 import os
 from typing import Any, Dict
 from fastapi import FastAPI, File, UploadFile, HTTPException
@@ -21,9 +22,12 @@ async def parse_edifact(file: UploadFile = File(...)) -> Dict[str, Any]:
 
         # Usa o parser para extrair os dados
         parsed_data = EDIFACTParser.parse_file(edifact_path)
-        print(f"Parsed EDIFACT data: {parsed_data}")
         
-        return parsed_data
+        # Converte parsed_data para JSON string antes de retornar
+        json_data = json.loads(json.dumps(parsed_data))  # json.loads converte de volta para um objeto dict
+        print(f"Parsed EDIFACT data: {json_data}")
+        
+        return json_data 
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao parsear arquivo EDIFACT: {e}")
